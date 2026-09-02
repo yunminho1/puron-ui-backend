@@ -1,0 +1,19 @@
+# plan 환경 — 기획/설계 데모용 (PM/기획PL/UIUX PL 검토). 포트 8081.
+server:
+  port: 8081
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/puron_plan
+  data:
+    redis:
+      host: localhost
+      port: 6381
+
+jwt:
+  # 환경별로 반드시 분리 — 다른 환경(dev/prod)에서 발급한 토큰이 이 환경에서 통하지 않도록
+  secret: ${JWT_SECRET_PLAN:puron-local-plan-only-secret-change-me}
+
+logging:
+  level:
+    root: DEBUG

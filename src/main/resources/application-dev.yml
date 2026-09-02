@@ -1,0 +1,19 @@
+# dev 환경 — 실제 구현 + QA 테스트케이스 실행. 포트 8082.
+server:
+  port: 8082
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/puron_dev
+  data:
+    redis:
+      host: localhost
+      port: 6382
+
+jwt:
+  # 환경별로 반드시 분리 — 다른 환경(plan/prod)에서 발급한 토큰이 이 환경에서 통하지 않도록
+  secret: ${JWT_SECRET_DEV:puron-local-dev-only-secret-change-me}
+
+logging:
+  level:
+    root: DEBUG

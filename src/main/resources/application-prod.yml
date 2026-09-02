@@ -1,0 +1,19 @@
+# prod 환경 — 사용자 승인 게이트 통과 후 최종 확인용. 포트 8083.
+server:
+  port: 8083
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/puron_prod
+  data:
+    redis:
+      host: localhost
+      port: 6383
+
+jwt:
+  # 환경별로 반드시 분리 — 다른 환경(plan/dev)에서 발급한 토큰이 이 환경에서 통하지 않도록
+  secret: ${JWT_SECRET_PROD:}
+
+logging:
+  level:
+    root: INFO

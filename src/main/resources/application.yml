@@ -1,0 +1,27 @@
+# 3개 profile(plan/dev/prod) 공통 값. profile별 값은 application-{profile}.yml에서 오버라이드한다.
+# (docs/05-deployment/phase-1/environment-setup-plan.md "② 에이전트 구성 항목" / "목표값 매핑" 참고)
+spring:
+  application:
+    name: puron-ui-backend
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+  datasource:
+    username: puron
+    password: puron
+    driver-class-name: org.postgresql.Driver
+
+jwt:
+  # 액세스 토큰 만료(초) — 짧은 수명으로 게이트웨이 자체 검증과 맞물려 위험 최소화
+  access-token:
+    expiration: 300
+  # 리프레시 토큰 저장소 — Redis에 refresh:{userId} 키로 보관 (TTL = 리프레시 토큰 만료시간)
+  refresh-token:
+    storage: redis
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
